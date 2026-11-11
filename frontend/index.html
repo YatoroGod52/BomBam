@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Кинотеатр «Октябрь» — фильмы, расписание сеансов, бронирование мест онлайн.">
+  <title>Кинотеатр «Октябрь»</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Сначала сброс стилей браузера, потом наши стили -->
+  <link rel="stylesheet" href="css/reset.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Курсор-софит (следует за мышью) -->
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- ===== ШАПКА ===== -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a class="logo" href="index.html">
+        <span class="logo__mark">🎬</span>
+        <span class="logo__text">Октябрь</span>
+      </a>
+      <nav class="nav">
+        <a href="#afisha">Афиша</a>
+        <a href="#schedule">Расписание</a>
+        <a href="#hall">Зал</a>
+        <a class="btn" href="#">Войти</a>
+      </nav>
+    </div>
+    <div class="header__progress" id="scrollProgress"></div>
+  </header>
+
+  <main>
+
+    <!-- ===== ГЛАВНЫЙ ЭКРАН ===== -->
+    <section class="hero" id="hero">
+      <div class="hero__bg" id="heroBg"></div>
+      <div class="hero__noise"></div>
+      <div class="container hero__inner">
+        <span class="hero__badge" data-reveal>🎟 Премьера недели</span>
+        <h1 data-reveal data-delay="100">
+          Кино рядом<br>с <span class="hero__accent">домом</span>
+        </h1>
+        <p class="muted hero__lead" data-reveal data-delay="200">
+          Выберите фильм, сеанс и место в зале — билет придёт на почту за секунду.
+        </p>
+        <div class="hero__actions" data-reveal data-delay="300">
+          <a class="btn btn--lg" href="#afisha">Смотреть афишу →</a>
+          <button class="btn btn--ghost btn--lg" id="trailerBtn" type="button">▶ Трейлер</button>
+        </div>
+        <div class="hero__stats" data-reveal data-delay="400">
+          <div class="stat">
+            <span class="stat__num" data-count="8">0</span>
+            <span class="stat__label">фильмов в прокате</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num" data-count="7">0</span>
+            <span class="stat__label">залов премиум</span>
+          </div>
+          <div class="stat">
+            <span class="stat__num" data-count="24">0</span>
+            <span class="stat__label">сеанса в день</span>
+          </div>
+        </div>
+      </div>
+      <a href="#afisha" class="hero__scroll" aria-label="Вниз">
+        <span></span>
+      </a>
+    </section>
+
+    <!-- ===== АФИША ===== -->
+    <section class="section" id="afisha">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2>Афиша</h2>
+          <p class="muted">Сейчас в прокате</p>
+        </div>
+        <div class="grid" id="moviesGrid"></div>
+      </div>
+    </section>
+
+    <!-- ===== РАСПИСАНИЕ ===== -->
+    <section class="section" id="schedule">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2>Расписание</h2>
+          <p class="muted">Выберите удобный день и время</p>
+        </div>
+
+        <div class="schedule" data-reveal>
+          <div class="schedule__dates" id="dates"></div>
+          <div class="schedule__times" id="times"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== ЗАЛ ===== -->
+    <section class="section" id="hall">
+      <div class="container">
+        <div class="section__head" data-reveal>
+          <h2>Схема зала</h2>
+          <p class="muted">Кликните по свободному месту — цена посчитается сама</p>
+        </div>
+
+        <div class="hall-wrap">
+          <div class="hall" data-reveal>
+            <div class="hall__screen"></div>
+            <div class="hall__seats" id="seats"></div>
+            <div class="hall__legend">
+              <span><i class="dot"></i>Свободно</span>
+              <span><i class="dot dot--gold"></i>Выбрано</span>
+              <span><i class="dot dot--vip"></i>VIP</span>
+              <span><i class="dot dot--busy"></i>Занято</span>
+            </div>
+          </div>
+
+          <aside class="order" data-reveal data-delay="120">
+            <h3 class="order__title">Ваш заказ</h3>
+            <div class="order__row"><span>Фильм</span><strong>Дюна: Часть 3</strong></div>
+            <div class="order__row"><span>Сеанс</span><strong>19:20 · IMAX</strong></div>
+            <div class="order__row"><span>Места</span><strong id="selSeats">—</strong></div>
+            <div class="order__row order__row--total">
+              <span>Итого</span>
+              <strong id="total">0 ₽</strong>
+            </div>
+            <button class="btn btn--block" type="button">Оплатить →</button>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== ПОДВАЛ ===== -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__brand">
+        <span class="logo__mark">🎬</span>
+        <strong>Октябрь</strong>
+      </div>
+      <p class="muted">© 2026 Кинотеатр «Октябрь» · учебный проект ПКО «Школьник»</p>
+      <div class="footer__socials">
+        <a href="#" aria-label="VK">VK</a>
+        <a href="#" aria-label="Telegram">TG</a>
+        <a href="#" aria-label="YouTube">YT</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ===== МОДАЛКА ТРЕЙЛЕРА ===== -->
+  <div class="modal" id="trailerModal" aria-hidden="true">
+    <div class="modal__backdrop" data-close></div>
+    <div class="modal__content" role="dialog" aria-modal="true">
+      <button class="modal__close" data-close aria-label="Закрыть">✕</button>
+      <div class="modal__video">
+        <div class="modal__play">▶</div>
+        <p class="muted">Здесь будет трейлер фильма (вставьте &lt;iframe&gt; YouTube)</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
